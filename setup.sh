@@ -22,7 +22,7 @@ pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu128
 
 pip install flash-attn --no-build-isolation
 
-pip install kaolin==0.18.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.9.0_cu128.html
+pip install kaolin==0.18.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.8.0_cu128.html
 
 pip install ./nvdiffrast/
 pip install ./diffoctreerast/
