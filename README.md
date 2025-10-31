@@ -2,6 +2,14 @@
 
 ## Download
 
+### U2Net
+
+```bash
+https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx
+->
+~/.u2net/u2net.onnx
+```
+
 ### DINOv2 Model
 
 ```bash
