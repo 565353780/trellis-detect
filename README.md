@@ -2,9 +2,21 @@
 
 ## Download
 
+### DINOv2 Model
+
 ```bash
-https://huggingface.co/microsoft/TRELLIS-image-large/resolve/main/ckpts/slat_flow_img_dit_L_64l8p2_fp16.safetensors
-https://huggingface.co/microsoft/TRELLIS-image-large/resolve/main/ckpts/slat_flow_img_dit_L_64l8p2_fp16.json
+https://dl.fbaipublicfiles.com/dinov2/dinov2_vitl14/dinov2_vitl14_reg4_pretrain.pth
+```
+
+### TRELLIS Models
+
+```bash
+sudo apt install git-lfs
+git lfs install
+
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/microsoft/TRELLIS-image-large
+cd TRELLIS-image-large
+git lfs pull
 ```
 
 ## Setup
