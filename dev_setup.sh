@@ -1,7 +1,8 @@
 cd ..
 git clone --recurse-submodules https://github.com/microsoft/TRELLIS.git
 git clone https://github.com/EasternJournalist/utils3d.git
-git clone --recurse-submodules https://github.com/Dao-AILab/flash-attention.git
+git clone https://github.com/facebookresearch/xformers.git
+git clone https://github.com/Dao-AILab/flash-attention.git
 git clone https://github.com/NVlabs/nvdiffrast.git
 git clone --recurse-submodules https://github.com/JeffreyXiang/diffoctreerast.git
 git clone https://github.com/autonomousvision/mip-splatting.git
@@ -25,9 +26,12 @@ cd ..
 
 pip install ./utils3d/
 
-pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu128
+cd xformers
+git checkout v0.0.33
+git submodule update --init --recursive
+python setup.py install
 
-cd flash-attention
+cd ../flash-attention
 git checkout v2.8.3
 python setup.py install
 
