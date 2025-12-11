@@ -33,10 +33,12 @@ python setup.py install
 
 cd ../nvdiffrast
 python setup.py install
-cd ..
+
+cd ../mip-splatting/submodules/diff-gaussian-rasterization/
+python setup.py install
+cd ../../..
 
 pip install ./diffoctreerast/
-pip install ./mip-splatting/submodules/diff-gaussian-rasterization/
 # cp -r ./extensions/vox2seq ./vox2seq
 # pip install ./vox2seq
 # pip install ./cumm

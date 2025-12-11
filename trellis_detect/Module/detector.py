@@ -57,7 +57,8 @@ class LocalTrellisImageTo3DPipeline(TrellisImageTo3DPipeline, Pipeline):
         Initialize the image conditioning model.
         """
         # dinov2_model = torch.hub.load(self.dino_model_file_path, name, pretrained=True)
-        dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        # dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        dtype = torch.float32
         dinov2_model = vit_large(
             patch_size=14,
             num_register_tokens=4,
@@ -67,9 +68,11 @@ class LocalTrellisImageTo3DPipeline(TrellisImageTo3DPipeline, Pipeline):
             interpolate_antialias=True,
             interpolate_offset=0.0,
             init_values=1.0,
-        ).to("cuda", dtype=dtype)
+        )
         model_state_dict = torch.load(self.dino_model_file_path, map_location="cpu")
         dinov2_model.load_state_dict(model_state_dict, strict=True)
+        # 确保模型所有参数都转换为正确的dtype
+        dinov2_model = dinov2_model.to("cuda").to(dtype)
         dinov2_model.eval()
         self.models["image_cond_model"] = dinov2_model
         transform = transforms.Compose(
