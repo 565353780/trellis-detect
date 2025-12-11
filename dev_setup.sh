@@ -9,9 +9,7 @@ git clone https://github.com/autonomousvision/mip-splatting.git
 # git clone https://github.com/traveller59/spconv.git
 git clone git@github.com:565353780/dino-v2-detect.git
 
-sudo apt install libjpeg-dev -y
-
-conda install -c conda-forge libstdcxx-ng
+conda install -c conda-forge libstdcxx-ng libjpeg-turbo -y
 
 pip install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 \
   --index-url https://download.pytorch.org/whl/cu128
@@ -29,11 +27,14 @@ pip install ./utils3d/
 
 pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu128
 
-MAX_JOBS=4 pip install ./flash-attention/ --no-build-isolation
+cd flash-attention
+git checkout v2.8.3
+python setup.py install
 
-pip install kaolin==0.18.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.8.0_cu128.html
+cd ../nvdiffrast
+python setup.py install
+cd ..
 
-pip install ./nvdiffrast/
 pip install ./diffoctreerast/
 pip install ./mip-splatting/submodules/diff-gaussian-rasterization/
 # cp -r ./extensions/vox2seq ./vox2seq
@@ -41,5 +42,7 @@ pip install ./mip-splatting/submodules/diff-gaussian-rasterization/
 # pip install ./cumm
 # SPCONV_DISABLE_JIT=1 pip install ./spconv
 pip install spconv-cu120
+
+pip install kaolin==0.18.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.8.0_cu128.html
 
 pip install gradio==4.44.1 gradio_litmodel3d==0.0.1
